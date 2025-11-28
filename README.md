@@ -34,7 +34,7 @@ local Horas = require(ReplicatedStorage.Horas)
 -- Check if player has the 'Admin' permission OR belongs to Group 123
 local hasAccess = Horas:HasPermission(player, { "Admin", "Group:123" })
 
-if hasAccess then
+if hasAccess then -- hasAccess will be true if player have access
     print("Welcome, Admin!")
 end
 ```
@@ -102,7 +102,41 @@ return MyCheck
 ```
 4. Now you can use it in your code: ```Horas:HasPermission(player, {"MyCheck:SomeArg"}).```
 
-##📄 License
+## ❔Default Permissions
+
+- **Group**
+   - `"Group:12345"` - Checks if the player is in the group. ⚠️ Using Group IDs is slower than using Group Abbreviations in the config, as abbreviation data is cached.
+   - `"Group:TestingGroup"` - Functions the same as above but uses a string alias instead of numbers. This is a faster option than using IDs.
+   - `"Group:TestingGroup:2"` - Checks if the player is in the group and holds the Rank ID of 2.
+   - `"Group:TestingGroup:2-100"` - Checks if the player is in the group and if their Rank ID is between 2 and 100 (inclusive).
+   - `"Group:TestingGroup:Special Member"` - Checks if the player is in the group and if their Role Name matches the one specified.
+- **AccountAge**
+   - `"AccountAge:1000"` - Checks if the player's account age is greater than 1000 days.
+- **Badge**
+   - `"Badge:1234567890"` - Checks if the player owns the specified badge.
+- **FriendsWith**
+   - `"FriendsWith:1234567890"` - Checks if the player is friends with the user specified by the User ID.
+- **Always**
+   - `"Always"` - Always returns `true`.
+- **Premium**
+   - `"Premium"` - Checks if the player has a Roblox Premium membership.
+- **Studio**
+   - `"Studio"` - Checks if the game is currently running in Roblox Studio.
+- **UserId**
+   - `"UserId:1234567890"` - Checks if the player matches the specified User ID.
+- **ServerType**
+   - `"ServerType:StandardServer"` - Checks if the current server is a Standard server.
+   - `"ServerType:ReservedServer"` - Checks if the current server is a Reserved server.
+   - `"ServerType:VIPServer"` - Checks if the current server is a VIP (Private) server.
+- **Never**
+   - `"Never"` - Always returns `false`.
+- **Gamepass**
+   - `"Gamepass:1234567890"` - Checks if the player owns the specified Gamepass.
+- **Team**
+   - `"Team:Testing Team"` - Checks if the player's Team name matches the one specified.
+   - `"Team::TT"` - Uses a Team Abbreviation defined in the settings. This functions the same as above but uses the abbreviated alias.
+ 
+## 📄 License
 This project is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0).
 
 You are free to:
