@@ -19,7 +19,6 @@
 	    but not in any way that suggests the licensor endorses you or your use.
 ]]--
 
-local Settings = require(script.Parent.Parent.Settings)
 local AccountAge = {}
 
 --[[
@@ -40,10 +39,10 @@ function AccountAge:checkPermission(player: Player, ...): boolean | nil
 	local args = { ... }
 	
 	if not args[1] then
-		return nil, "Invalid"
+		return nil, "Invalid account age"
 	end
 	
-	local minAccountAge = Settings.MinAccountAge
+	local minAccountAge = tonumber(args[1])
 	
 	return if player.AccountAge >= minAccountAge then true else false
 end
