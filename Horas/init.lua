@@ -21,7 +21,7 @@ debug.setmemorycategory("Horas")
 	    and indicate if changes were made. You may do so in any reasonable manner, 
 	    but not in any way that suggests the licensor endorses you or your use.
 ]]--
-
+local version    = "1.1.0"
 local Settings   = require(script.Settings)
 --
 local RunService = game:GetService("RunService")
