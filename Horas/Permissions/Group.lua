@@ -89,7 +89,7 @@ end
 	** @return boolean - Returns true if the player has all the permissions, false otherwise.
 	** @return string - Returns a string with the error message or the function you used return a string.
 ]]
-function Group:checkPermission(player: Player, ...): boolean
+function Group:checkPermission(player: Player, ...): boolean | nil
 	local args = { ... }
 
 	local groupNameOrId = args[1]
@@ -126,26 +126,17 @@ function Group:checkPermission(player: Player, ...): boolean
 		end
 	end
 	
-	local currentRank: number = playerData[groupNameOrId] and playerData[groupNameOrId]["Rank"]
-	local currentRole: string = playerData[groupNameOrId] and playerData[groupNameOrId]["Role"]
+	local currentRank: number = (playerData[groupNameOrId] and playerData[groupNameOrId]["Rank"] or 0)
+	local currentRole: string = (playerData[groupNameOrId] and playerData[groupNameOrId]["Role"] or "Guest")
 	
-	if isExternalGroup and currentRank == nil then
-		local success, rank = pcall(function() return player:GetRankInGroup(groupNameOrId) end)
-		local successRole, role = pcall(function() return player:GetRoleInGroup(groupNameOrId) end)
-		
-		local success, error = xpcall(function()
+	if isExternalGroup then		
+		local _success, _error = xpcall(function()
 			currentRank = player:GetRankInGroup(groupNameOrId)
 			currentRole = player:GetRoleInGroup(groupNameOrId)
 		end, function()
-			warn("[Horas] Error while getting group data for ".. player.Name ..": ".. tostring(error))
+			warn("[Horas] Error while getting group data for ".. player.Name ..": ".. tostring(_error))
 			return nil, "Error while getting group data"
 		end)
-
-		if success then currentRank = rank else currentRank = 0 end
-		if successRole then currentRole = role else currentRole = "Guest" end
-	elseif currentRank == nil then
-		currentRank = 0
-		currentRole = "Guest"
 	end
 	
 	if groupRank == nil then

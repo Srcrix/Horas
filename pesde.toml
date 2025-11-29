@@ -1,0 +1,24 @@
+name = "srcrix/horas"
+version = "0.1.0"
+description = "Horas is an open-source Permission Management System (PMS) designed to help developers manage access control efficiently while serving as an educational resource for mastering ModuleScripts and cross-boundary communication (Client-Server) in Roblox."
+authors = ["3xp0x3d (Sr_Crix)"]
+repository = "https://github.com/Srcrix/Horas"
+license = "CC-BY-4.0"
+
+[target]
+environment = "roblox"
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[scripts]
+roblox_sync_config_generator = ".pesde/scripts/roblox_sync_config_generator.luau"
+sourcemap_generator = ".pesde/scripts/sourcemap_generator.luau"
+
+[dev_dependencies]
+scripts = { name = "pesde/scripts_rojo", version = "^0.2.0", target = "lune" }
+rojo = { name = "pesde/rojo", version = "^7.5.1", target = "lune" }
+
+[engines]
+pesde = "^0.7.0"
+lune = "^0.10.2"

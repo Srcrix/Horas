@@ -19,7 +19,6 @@
 	    but not in any way that suggests the licensor endorses you or your use.
 ]]--
 
-local Settings = require(script.Parent.Parent.Settings)
 local Never = {}
 
 --[[
@@ -36,7 +35,7 @@ end
 	** @return boolean - Returns true if the player has all the permissions, false otherwise.
 	** @return string - Returns a string with the error message or the function you used return a string.
 ]]
-function Never:checkPermission(player: Player, ...): boolean
+function Never:checkPermission(player: Player, ...): boolean | nil
 	return false
 end
 

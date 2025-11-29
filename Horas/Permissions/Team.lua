@@ -36,7 +36,7 @@ end
 	** @return boolean - Returns true if the player has all the permissions, false otherwise.
 	** @return string - Returns a string with the error message or the function you used return a string.
 ]]
-function Team:checkPermission(player: Player, ...): boolean
+function Team:checkPermission(player: Player, ...): boolean | nil
 	local args = { ... }
 	
 	local playerTeam = player.Team
